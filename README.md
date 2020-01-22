@@ -1,1 +1,1 @@
-# Diplom-mq-20-Adaptive-and-Rsponsive
+# Diplom-mq-20-Adaptive-and-Responsive
