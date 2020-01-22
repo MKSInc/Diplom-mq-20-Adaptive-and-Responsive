@@ -27,7 +27,14 @@
 
 body {
     font-family: 'Open Sans', sans-serif;
+    /* Наложение макета */
+    1background-image: url("../mq-diploma-master/sources/surface_320.jpg");
+    1opacity: 0.5;
 }
+
+/* ----------
+     HEADER
+   ---------- */
 
 .header {
     position: relative;
@@ -114,9 +121,9 @@ body {
     background-color: #5e42b0;
 
     font-size: 8px;
-    color: #ffffff;
     text-transform: uppercase;
     text-decoration: none;
+    color: #ffffff;
 
     box-sizing: border-box;
     padding-left: calc(50% - 60px);
@@ -134,3 +141,130 @@ body {
     display: block;
     font-weight: 700;
 }
+
+/* ----------
+      MAIN
+   ---------- */
+
+.article {
+    position: relative;
+    padding-top: 12px;
+}
+
+.article__text {
+    padding: 0 20px;
+}
+
+.article__title {
+    font-family: "Open Sans", sans-serif;
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 60px;
+
+    text-transform: uppercase;
+    color: #e7e7e7;
+}
+
+.article__image {
+    position: absolute;
+    width: 192px;
+    top: 80px;
+    left: calc(50% - 192px/2);
+}
+
+.article__list {
+    list-style-type: none;
+    margin-top: 230px;
+}
+
+.article__list li {
+    padding-top: 52px;
+    padding-bottom: 53px;
+}
+
+.article__list li:nth-child(1) {
+    padding-top: 83px;
+    background-color: #fafafa;
+}
+
+.article__list li:nth-child(2) {
+    background-color: #f5f4f9;
+}
+
+.article__list li:nth-child(3) {
+    background-color: #5e42b0;
+}
+
+.list__item__header {
+    display: flex;
+}
+
+.list__item__number {
+    position: relative;
+
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+}
+
+.list__item__number::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    top: 18px;
+    left: 0;
+    background-color: #5e42b0;
+}
+
+/* Выбираем номер последнего элемента списка */
+.article__list li:last-child .list__item__number::before {
+    background-color: #ffffff;
+}
+
+.article__list li:last-child .list__item__text {
+    color: #ffffff;
+}
+
+.list__item__title {
+    display: inline-block;
+    font-size: 23px;
+    font-weight: 700;
+    line-height: 100%;
+
+    text-transform: uppercase;
+    letter-spacing: 1.15px;
+    color: #c1c1c1;
+
+    margin-left: 7px;
+}
+
+.list__item__text {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18px;
+
+    letter-spacing: 0.75px;
+    margin-top: 25px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
