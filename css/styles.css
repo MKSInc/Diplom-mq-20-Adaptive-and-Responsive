@@ -38,7 +38,7 @@ body {
 
 .header {
     position: relative;
-    background-image: url("../images/football_767.jpg");
+    /* Картинка грузится в зависимости от медиазапроса. */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -59,7 +59,7 @@ body {
     opacity: 0.9;
 }
 
-.content {
+.content, .article__text, .action__text {
     padding: 0 20px;
 }
 
@@ -143,9 +143,10 @@ body {
     color: #e7e7e7;
 }
 
+/*  Устанавливаем для <picture> display: block, чтобы он занял всю ширину
+    и чтобы на него мог наползать нижний блок за счет отрицательного марджина.  */
 .article__image {
-    padding: 0 9px;
-    margin-top: 8px;
+    display: block;
 }
 
 .article__image img {
@@ -161,23 +162,9 @@ body {
     counter-reset: article__list-counter;
 }
 
-/* Разный марджин наползания на картинку для .first-article и .second-article блоков для соответствия с макетом */
-.first-article .article__list {
-    margin-top: -60px;
-}
-
-.second-article .article__list {
-    margin-top: -26px;
-}
-
 .article__list li {
     padding-top: 55px;
     padding-bottom: 53px;
-}
-
-.article__list li:nth-child(1) {
-    padding-top: 83px;
-    background-color: #fafafa;
 }
 
 .article__list li:nth-child(2) {
@@ -270,7 +257,8 @@ body {
 }
 
 .action__text {
-    padding: 29px 20px 82px 20px;
+    margin-top: 29px;
+    padding-bottom: 82px;
 }
 
 .action__item__image img {
@@ -323,7 +311,7 @@ body {
     border-radius: 2px;
 
     top: -43px;
-    left: calc(34px - 17px/2);
+    left: calc(70px/2 - 17px/2);
     background-color: #ffffff;
     opacity: 0.3;
 }
@@ -343,7 +331,7 @@ body {
 
 .footer {
     position: relative;
-    background-image: url("../images/game_767.jpg");
+    /* Картинка грузится в зависимости от медиазапроса. */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -362,7 +350,6 @@ body {
 
     background-color: #0a0e34;
     opacity: 0.9;
-
 }
 
 .footer__body {
@@ -380,7 +367,6 @@ body {
     height: 74px;
     background-image: linear-gradient(to top, #50329c 0%, #5e3db3 51%, #7751db 100%);
     border-radius: 25%;
-
     margin: 0 auto;
 }
 
@@ -418,24 +404,98 @@ body {
 /* ---------------------------
       MEDIA-320 (1 - 640)
    --------------------------- */
-
 @media (max-width: 640px) {
 
+    /* Вертикальный отступ между ссылками на магазины */
     .store__link__container a:first-child {
         margin-bottom: 14px;
     }
 
+    /* Разные марджины наползания на картинку для .first-article и .second-article блоков для соответствия с макетом */
+    .first-article .article__list {
+        margin-top: -60px;
+    }
+
+    .second-article .article__list {
+        margin-top: -26px;
+    }
+
+    /* Задаем больший отступ первого пункта от картинки (для совпадения с макетом) */
+    .article__list li:nth-child(1) {
+        background-color: #fafafa;
+        padding-top: 83px;
+    }
+
+    .article__image {
+        padding: 0 9px;
+        margin-top: 8px;
+    }
+}
+
+/* ---------------------------
+      MEDIA-320 (1 - 768)
+      Указываем картинки для шапки и подвала.
+   --------------------------- */
+@media (max-width: 768px) {
+
+    .header {
+        background-image: url("../images/football_767.jpg");
+    }
+
+    .footer {
+        background-image: url("../images/game_767.jpg");
+    }
+}
+
+/* ---------------------------
+      MEDIA-768 (641 - 768)
+      Расчет ширины картинки с баскетбалистом.
+   --------------------------- */
+@media (min-width: 641px) and (max-width: 768px) {
+    .second-article .article__image {
+        width: calc((56.77vw + 20vw) - (76.7px * 2));    /* Позволяет уменьшать баскетболиста быстрее так, что бы он не наезжал на текст. */
+    }
+}
+
+/* ---------------------------
+      MEDIA-768 (769 - 960)
+      Расчет ширины картинки с баскетбалистом.
+      Возможность запретить растягивание картинкам (рекбитсу и баскетболисту) по ширине.
+   --------------------------- */
+@media (min-width: 769px) and (max-width: 960px) {
+    /*  Запрещаем картинке растягиваться по ширине (сохраняя пропорции) на разрешении экрана больше 768. */
+    .first-article .article__image {
+        /*  max-width: 266px;   */
+    }
+
+    .second-article .article__image {
+        width: 56.77vw;     /* 768 resolution -> 436px; */
+    /*  Запрещаем картинке растягиваться по ширине (сохраняя пропорции) на разрешении экрана больше 768. */
+    /*  max-width: 436px;   */
+    }
 }
 
 /* ---------------------------
       MEDIA-768 (641 - 960)
+      Основной медиазапрос для макета 768.
    --------------------------- */
-
 @media (min-width: 641px) and (max-width: 960px) {
 
-    .content {
+    /* Задаем отступы от краев экрана для контента */
+    .content, .action__text {
         padding: 0 32px;
     }
+
+    .first-article .article__text {
+        padding-right: 32px;
+    }
+
+    .second-article .article__text {
+        padding-left: 32px;
+    }
+    /* -------------------------------------------- */
+
+    /* HEADER (641 - 960) */
 
     .header__body {
         padding-top: 38px;
@@ -469,9 +529,7 @@ body {
     }
 
     .store__link {
-        display: flex;
-
-        flex: 0 0 311px;
+        flex: 0 1 311px;
         height: 77px;
         border-radius: 38px;
 
@@ -497,16 +555,230 @@ body {
     }
 
     .google-store__link .store__logo {
-        width: 45px;
-        margin-right: 27px;
+        width: 46px;
+        margin-right: 23px;
+    }
+
+    /* MAIN (641 - 960) */
+
+    .article {
+        position: relative;
+        padding-top: 82px;
+    }
+
+    .article__text {
+        position: relative;     /* На тот случай, если будет использованна такая картинка, которая будет налезать на текст. */
+                                /* Чтобы текст был поверх картинки. */
+    }
+
+    .first-article .article__text {
+        padding-left: 38.02vw;  /* 768 resolution -> 292px */
+    }
+
+    .second-article .article__text {
+        padding-right: 42.97vw; /* 768 resolution -> 330px  */
+                                /* Разные отступы от краев экрана, что бы сделать контентную часть уже, */
+                                /* что бы перенос слов совпадал с макетом. */
+    }
+
+    .article__title {
+        font-size: 80px;
+    }
+
+    .first-article .article__image {
+        position: absolute;
+        width: 34.6vw;     /* 768 resolution -> 266px; */
+        height: 91.2vw;     /* 768 resolution -> 700px; */
+        top: 94px;
+        left: 0;
+
+    /*  Вариант управления поведением картинки с применением flex */
+    /*  display: flex;
+        flex-direction: column; */
+    }
+
+    .first-article .article__image img {
+        object-position: right top;
+        object-fit: cover;
+
+    /*  Вариант управления поведением картинки без flex */
+        height: 100%;
+        max-height: 700px;
+        margin-left: 0;
+        margin-right: auto;
+
+    /*  Вариант управления поведением картинки с применением flex */
+    /*  flex: 0 1 700px;    */
+    }
+
+    .second-article .article__image {
+        position: absolute;
+    /*  Требуется различное поведение ширины в диапазоне (641 - 960), так как при уменьшении ширины до 641,
+        баскетболист наползает на текс. Поэтому ширина высчитывается по разному в медиазапросах (641 - 768) и (769 - 960). */
+
+        height: 73.57vw;     /* 768 resolution -> 565px; */
+        top: 39px;
+        right: 0;
+
+    /*  Вариант управления поведением картинки с применением flex */
+    /*  display: flex;
+        flex-direction: column; */
+    }
+
+    .second-article .article__image img {
+        object-position: left top;
+        object-fit: cover;
+
+    /*  Вариант управления поведением картинки без flex */
+        height: 100%;
+        max-height: 565px;
+        margin-left: auto;
+        margin-right: 0;
+
+    /*  Вариант управления поведением картинки с применением flex */
+    /*  flex: 0 1 565px;    */
+    }
+
+    .article__list {
+        margin-top: 22px;
+    }
+
+    .article__list li {
+        padding-top: 37px;
+        padding-bottom: 32px;
+    }
+
+
+    .list__item__title {
+        font-size: 32px;
+        letter-spacing: 1.6px;
+
+        margin-left: 30px;
+    }
+
+    .list__item__title::before {
+        top: -4px;
+        left: -30px;
+
+        font-size: 18px;
+        letter-spacing: 0.9px;
+    }
+
+    .list__item__title::after {
+        width: 22px;
+        height: 5px;
+
+        top: 24px;
+        left: -30px;
+    }
+
+    .list__item__text {
+        font-size: 16px;
+        line-height: 28px;
+
+        letter-spacing: 0.8px;
+        margin-top: 21px;
+    }
+
+    /* ACTION-LIST (641 - 960) */
+
+    .action__text {
+        margin-top: 79px;
+        padding-bottom: 99px;
+    }
+
+    .action__item__image {
+    /*  Точно не уверен, нужно ли для <picture> дописать display: block,
+        так как и без него картинка отображается как надо. Но на всякий случай добавил. */
+        display: block;
+    }
+
+    .action__item__image img {
+        min-height: 100px; /* ?? */
+    }
+
+    .action__item__title {
+        font-size: 80px;
+        letter-spacing: normal;
+
+        color: #c1c1c1;
+    }
+
+    .action__item__title span {
+        opacity: 0.4;
+    }
+
+    .action__item__title::before {
+        font-size: 24px;
+        line-height: 100px;
+        letter-spacing: 1.2px;
+
+        width: 116px;
+        height: 116px;
+
+        top: -156px;
+        left: 0;
+    }
+
+    .action__item__title::after {
+        width: 30px;
+        height: 5px;
+
+        top: -87px;
+        left: calc(116px/2 - 30px/2);
+    }
+
+    .action__item__text {
+        font-size: 24px;
+        line-height: 28px;
+
+        letter-spacing: 1.2px;
+        margin-top: 25px;
+    }
+
+    /* FOOTER (641 - 960) */
+
+    .footer__body {
+        padding-top: 125px;
+        padding-bottom: 10px;
+    }
+
+    .footer__logo {
+        width: 130px;
+        height: 137px;
+    }
+
+    .footer__text {
+        font-size: 36px;
+        color: #a496ca;
+
+        margin-top: 52px;
+        margin-bottom: 274px;
+    }
+
+    .footer__title {
+        font-size: 80px;
+        letter-spacing: 3px;
+    }
+
+    .footer__full-logo {
+        margin-top: 55px;
     }
 
 }
 
+/* ---------------------------
+      MEDIA-768 (769 - 1280)
+      Меняем картинки для шапки и подвала.
+   --------------------------- */
 @media (min-width: 769px) and (max-width: 1280px) {
 
     .header {
         background-image: url("../images/football_1280.jpg");
+    }
+
+    .footer {
+        background-image: url("../images/game_1280.jpg");
     }
 }
 
