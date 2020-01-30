@@ -964,7 +964,8 @@ body {
     /* ACTION-LIST (961 - ...) */
 
     .action__list {
-        margin-top: 37px;
+    /*  Временный отступ, чтобы подогнать блок под макет на время верстки */
+    /*  margin-top: 37px;   */
     }
 
     .action__item {
