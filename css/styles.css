@@ -27,9 +27,6 @@
 
 body {
     font-family: 'Open Sans', sans-serif;
-    /* Наложение макета */
-    1background-image: url("../mq-diploma-master/sources/surface_768.jpg");
-    1opacity: 0.5;
 }
 
 /* ----------
@@ -59,7 +56,11 @@ body {
     opacity: 0.9;
 }
 
-.content, .article__text, .action__text {
+/*  Отступы от краев экрана до текста.
+    Также для макета 1920 задает фиксированную максимальную ширину.
+    Не применяется в блоке призывов (.action__list) так как для него в макете 1920 используется вся ширина экрана.
+    В блоке .action__list эту фунцию выполняет .action__text    */
+.content {
     padding: 0 20px;
 }
 
@@ -131,13 +132,17 @@ body {
    ---------- */
 
 .article {
-    padding-top: 12px;
+    padding-top: 18px;
 }
+
+/*  Для указания разных отступов от краев экрана до текста.
+    Используется для макетов 768 и 1920*/
+.article__text {}
 
 .article__title {
     font-size: 50px;
+    line-height: 100%;
     font-weight: 700;
-    line-height: 60px;
 
     text-transform: uppercase;
     color: #e7e7e7;
@@ -256,15 +261,17 @@ body {
     counter-reset: action__list-counter;
 }
 
-.action__text {
-    margin-top: 29px;
-    padding-bottom: 82px;
-}
 
 .action__item__image img {
     display: block;
     width: 100%;
     min-height: 100px;
+}
+
+/*  Для указания разных отступов от краев экрана до текста. */
+.action__text {
+    margin-top: 30px;
+    padding: 0 20px 77px 20px;
 }
 
 .action__item__title {
@@ -286,7 +293,6 @@ body {
     font-size: 14px;
     font-weight: 700;
     line-height: 65px;
-    vertical-align: center;
     text-align: center;
 
     letter-spacing: 0.7px;
@@ -296,7 +302,7 @@ body {
     width: 70px;
     height: 70px;
 
-    top: -86px;
+    top: -88px;
     left: 0;
 
     background-color: #5e42b0;
@@ -322,7 +328,7 @@ body {
     line-height: 20px;
 
     letter-spacing: 0.8px;
-    margin-top: 18px;
+    margin-top: 17px;
 }
 
 /* ------------
@@ -356,7 +362,7 @@ body {
     position: relative;
     z-index: 2;
 
-    padding-top: 81px;
+    padding-top: 99px;
     padding-bottom: 10px;
 }
 
@@ -413,7 +419,7 @@ body {
 
     /* Разные марджины наползания на картинку для .first-article и .second-article блоков для соответствия с макетом */
     .first-article .article__list {
-        margin-top: -60px;
+        margin-top: -55px;
     }
 
     .second-article .article__list {
@@ -423,12 +429,12 @@ body {
     /* Задаем больший отступ первого пункта от картинки (для совпадения с макетом) */
     .article__list li:nth-child(1) {
         background-color: #fafafa;
-        padding-top: 83px;
+        padding-top: 81px;
     }
 
     .article__image {
         padding: 0 9px;
-        margin-top: 8px;
+        margin-top: 13px;
     }
 }
 
@@ -445,6 +451,105 @@ body {
     .footer {
         background-image: url("../images/game_767.jpg");
     }
+}
+
+/* ---------------------------
+      MEDIA-768+1920 (641 - ...)
+      Общие стили у макетов 768 и 1920
+   --------------------------- */
+@media (min-width: 641px) {
+
+/*  HEADER (641 - ...)  */
+
+    .store__link__container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .store__link {
+        flex: 0 1 311px;
+        height: 77px;
+        border-radius: 38px;
+
+        font-size: 14px;
+    }
+
+    .app-store__link {
+        padding-left: 38px;
+    }
+
+    .google-store__link {
+        padding-left: 53px;
+    }
+
+    .app-store__link .store__logo {
+        width: 45px;
+        margin-top: -6px;
+        margin-right: 23px;
+    }
+
+    .google-store__link .store__logo {
+        width: 46px;
+        margin-right: 23px;
+    }
+
+/* MAIN (641 - ...) */
+
+    .article {
+        position: relative;
+    }
+
+    .article__text {
+        position: relative;     /* На тот случай, если будет использованна такая картинка, которая будет налезать на текст. */
+                                /* Чтобы текст был поверх картинки. */
+    }
+
+    .article__title {
+        font-size: 80px;
+    }
+
+    .article__image {
+        position: absolute;
+
+    /*  Вариант управления поведением картинки с применением flex */
+    /*  display: flex;
+        flex-direction: column; */
+    }
+
+    .article__image img {
+        object-fit: cover;
+
+    /*  Вариант управления поведением картинки без flex */
+        height: 100%;
+    }
+
+    .first-article .article__image img {
+        object-position: right center;
+    }
+
+    .second-article .article__image img {
+        object-position: left center;
+    }
+
+    .list__item__title {
+        margin-left: 30px;
+    }
+
+    .list__item__title::before {
+        left: -30px;
+
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+
+    .list__item__title::after {
+        width: 22px;
+        height: 5px;
+
+        top: 24px;
+        left: -30px;
+    }
+
 }
 
 /* ---------------------------
@@ -481,21 +586,12 @@ body {
    --------------------------- */
 @media (min-width: 641px) and (max-width: 960px) {
 
-    /* Задаем отступы от краев экрана для контента */
+/*  Задаем отступы от краев экрана для текста */
     .content, .action__text {
         padding: 0 32px;
     }
 
-    .first-article .article__text {
-        padding-right: 32px;
-    }
-
-    .second-article .article__text {
-        padding-left: 32px;
-    }
-    /* -------------------------------------------- */
-
-    /* HEADER (641 - 960) */
+/*  HEADER (641 - 960)  */
 
     .header__body {
         padding-top: 38px;
@@ -523,86 +619,37 @@ body {
         margin-top: 8px;
     }
 
-    .store__link__container {
-        display: flex;
-        justify-content: center;
-    }
-
-    .store__link {
-        flex: 0 1 311px;
-        height: 77px;
-        border-radius: 38px;
-
-        font-size: 14px;
-    }
-
-    .app-store__link {
-        padding-left: 38px;
-    }
-
-    .google-store__link {
-        padding-left: 53px;
-    }
-
     .store__link__container a:first-child {
         margin-right: 30px;
-    }
-
-    .app-store__link .store__logo {
-        width: 45px;
-        margin-top: -6px;
-        margin-right: 23px;
-    }
-
-    .google-store__link .store__logo {
-        width: 46px;
-        margin-right: 23px;
     }
 
     /* MAIN (641 - 960) */
 
     .article {
-        position: relative;
-        padding-top: 82px;
-    }
-
-    .article__text {
-        position: relative;     /* На тот случай, если будет использованна такая картинка, которая будет налезать на текст. */
-                                /* Чтобы текст был поверх картинки. */
+        padding-top: 73px;
     }
 
     .first-article .article__text {
-        padding-left: 38.02vw;  /* 768 resolution -> 292px */
+        padding-left: 33.85vw;  /* 768 resolution -> 292-32=260px */
+
     }
 
     .second-article .article__text {
-        padding-right: 42.97vw; /* 768 resolution -> 330px  */
+        padding-right: 41.41vw; /* 768 resolution -> 318px  */
                                 /* Разные отступы от краев экрана, что бы сделать контентную часть уже, */
                                 /* что бы перенос слов совпадал с макетом. */
     }
 
-    .article__title {
-        font-size: 80px;
-    }
-
     .first-article .article__image {
-        position: absolute;
         width: 34.6vw;     /* 768 resolution -> 266px; */
         height: 91.2vw;     /* 768 resolution -> 700px; */
         top: 94px;
         left: 0;
-
-    /*  Вариант управления поведением картинки с применением flex */
-    /*  display: flex;
-        flex-direction: column; */
     }
 
     .first-article .article__image img {
-        object-position: right top;
-        object-fit: cover;
 
     /*  Вариант управления поведением картинки без flex */
-        height: 100%;
         max-height: 700px;
         margin-left: 0;
         margin-right: auto;
@@ -612,25 +659,16 @@ body {
     }
 
     .second-article .article__image {
-        position: absolute;
     /*  Требуется различное поведение ширины в диапазоне (641 - 960), так как при уменьшении ширины до 641,
         баскетболист наползает на текс. Поэтому ширина высчитывается по разному в медиазапросах (641 - 768) и (769 - 960). */
 
         height: 73.57vw;     /* 768 resolution -> 565px; */
         top: 39px;
         right: 0;
-
-    /*  Вариант управления поведением картинки с применением flex */
-    /*  display: flex;
-        flex-direction: column; */
     }
 
     .second-article .article__image img {
-        object-position: left top;
-        object-fit: cover;
-
     /*  Вариант управления поведением картинки без flex */
-        height: 100%;
         max-height: 565px;
         margin-left: auto;
         margin-right: 0;
@@ -640,7 +678,7 @@ body {
     }
 
     .article__list {
-        margin-top: 22px;
+        margin-top: 13px;
     }
 
     .article__list li {
@@ -652,24 +690,10 @@ body {
     .list__item__title {
         font-size: 32px;
         letter-spacing: 1.6px;
-
-        margin-left: 30px;
     }
 
     .list__item__title::before {
         top: -4px;
-        left: -30px;
-
-        font-size: 18px;
-        letter-spacing: 0.9px;
-    }
-
-    .list__item__title::after {
-        width: 22px;
-        height: 5px;
-
-        top: 24px;
-        left: -30px;
     }
 
     .list__item__text {
@@ -682,11 +706,6 @@ body {
 
     /* ACTION-LIST (641 - 960) */
 
-    .action__text {
-        margin-top: 79px;
-        padding-bottom: 99px;
-    }
-
     .action__item__image {
     /*  Точно не уверен, нужно ли для <picture> дописать display: block,
         так как и без него картинка отображается как надо. Но на всякий случай добавил. */
@@ -694,7 +713,14 @@ body {
     }
 
     .action__item__image img {
-        min-height: 100px; /* ?? */
+    /*  Минимальная высота для блока, если картинка не загрузится,
+        что бы избежать наползания соседних блоков друг на друга.   */
+        min-height: 150px;
+    }
+
+    .action__text {
+        margin-top: 79px;
+        padding-bottom: 97px;
     }
 
     .action__item__title {
@@ -740,7 +766,7 @@ body {
 
     .footer__body {
         padding-top: 125px;
-        padding-bottom: 10px;
+        padding-bottom: 18px;
     }
 
     .footer__logo {
@@ -752,8 +778,8 @@ body {
         font-size: 36px;
         color: #a496ca;
 
-        margin-top: 52px;
-        margin-bottom: 274px;
+        margin-top: 57px;
+        margin-bottom: 271px;
     }
 
     .footer__title {
@@ -782,6 +808,258 @@ body {
     }
 }
 
+/* ---------------------------
+      MEDIA-1920 (961 - 1919)
+      Изменение размера шрифта при изменение ширина экрана
+   --------------------------- */
+@media (min-width: 961px) and (max-width: 1919px) {
+    .general-title {
+    /*  При ширине экрана 961 дает font-size: 66px, а при 1920 - 90px.  */
+        font-size: calc(2.5vw + 41.95px);
+    }
+
+    .general-title__second-line {
+    /*  При ширине экрана 961 дает width: 827px, а при 1920 - 1090px.  */
+        width: calc(27.42vw + 563.45px);
+        margin-top: -10px;
+    }
+}
+
+/* ---------------------------
+      MEDIA-1920 (1920 - ...)
+      Изменение размера шрифта при изменение ширина экрана
+   --------------------------- */
+@media (min-width: 1920px) {
+    .general-title {
+        font-size: 90px;
+    }
+
+    .general-title__second-line {
+        width: 1090px;
+        margin-top: -16px;
+    }
+
+}
+
+/* ---------------------------
+      MEDIA-1920 (961 - ...)
+      Основной медиазапрос для макета 1920.
+   --------------------------- */
+@media (min-width: 961px) {
+
+    .content {
+        box-sizing: border-box;
+        max-width: 1560px;
+
+        padding: 0 15px;
+        margin: 0 auto;
+    }
+
+    /*  HEADER (961 - ...)  */
+
+    .header__body {
+        padding-top: 45px;
+        padding-bottom: 109px;
+    }
+
+    .full-logo {
+        width: 191px;
+    }
+
+    .general-title {
+    /*  Размер шрифта меняется в зависимости от ширины экрана
+        и указывается в соответствующих медиазапросах (961 - 1919) и (1920 - ...)   */
+        line-height: 120%;
+        letter-spacing: 4px;
+
+        margin-top: 266px;
+        margin-bottom: 205px;
+    }
+
+    .general-title__second-line {
+        margin-right: 0;
+    }
+
+    .store__link__container a:first-child {
+        margin-right: 50px;
+    }
+
+    /* MAIN (961 - ...) */
+
+    .article {
+        padding-top: 101px;
+    }
+
+    .first-article .article__text {
+        padding-left: 53.12%;
+    }
+
+    .second-article .article__text {
+        padding-right: calc(50% - 14px);
+
+    }
+
+    .first-article .article__image {
+        max-width: 826px;
+        height: 908px;
+        top: 27px;
+        right: 50%;
+    }
+
+    .first-article .article__image img {
+
+    /*  Вариант управления поведением картинки без flex */
+        max-height: 908px;
+        margin-right: 0;
+        margin-left: auto;
+
+    /*  Вариант управления поведением картинки с применением flex */
+    /*  flex: 0 1 908px;    */
+    }
+
+    .second-article .article__image {
+        max-width: 991px;
+        height: 755px;
+        top: 23px;
+        left: 41.88vw;          /* 1920 resolution -> 804px; */
+    }
+
+    .second-article .article__image img {
+    /*  Вариант управления поведением картинки без flex */
+        max-height: 755px;
+        margin-left: 0;
+        margin-right: auto;
+
+    /*  Вариант управления поведением картинки с применением flex */
+    /*  flex: 0 1 755px;    */
+    }
+
+    .article__list {
+        margin-top: 41px;
+    }
+
+    .article__list li {
+        padding-top: 57px;
+        padding-bottom: 53px;
+    }
+
+
+    .list__item__title {
+        font-size: 36px;
+        letter-spacing: 2px;
+    }
+
+    .list__item__title::before {
+        top: -7px;
+    }
+
+    .list__item__text {
+        font-size: 20px;
+        line-height: 140%;
+
+        letter-spacing: 1px;
+        margin-top: 21px;
+    }
+
+    /* ACTION-LIST (961 - ...) */
+
+    .action__list {
+        margin-top: 37px;
+    }
+
+    .action__item {
+        display: flex;
+        justify-content: center;
+
+        position: relative;
+    }
+
+    .action__item:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+
+    .action__item__image, .action__text {
+        flex: 0 1 956px;
+    }
+
+    .action__item__image {
+        display: block;     /* Общее свойство с макетом 768 */
+    }
+
+    .action__text {
+        box-sizing: border-box;
+
+        margin-top: 0;
+        padding-top: 247px;
+        padding-bottom: 97px;
+    }
+
+    .action__item:nth-child(odd) .action__text {
+        padding-left: 123px;
+        padding-right: calc(9.48% + 15px);      /* 1920 resolution -> 182+15; */
+    }
+
+    .action__item:nth-child(even) .action__text {
+        padding-left: calc(9.48% + 15px);       /* 1920 resolution -> 182+15; */
+        padding-right: 123px;
+    }
+
+    .action__item__title {
+        position: static;
+        font-size: 80px;        /* Общее свойство с макетом 768 */
+        letter-spacing: normal; /* Общее свойство с макетом 768 */
+
+        color: #c1c1c1;         /* Общее свойство с макетом 768 */
+    }
+
+    .action__item__title span {
+        opacity: 0.4;           /* Общее свойство с макетом 768 */
+    }
+
+    .action__item__title::before {
+        font-size: 24px;        /* Общее свойство с макетом 768 */
+        line-height: 139px;
+        letter-spacing: 1.2px;  /* Общее свойство с макетом 768 */
+
+        width: 168px;
+        height: 155px;
+
+        top: 210px;
+        left: calc(50% - 168px/2);
+    }
+
+    .action__item__title::after {
+        width: 30px;
+        height: 5px;
+
+        top: 298px;
+        left: calc(50% - 30px/2);
+    }
+
+    .action__item__text {
+        font-size: 24px;
+        line-height: 28px;
+
+        letter-spacing: 1.2px;
+        margin-top: 104px;
+    }
+
+}
+
+/* ---------------------------
+      MEDIA-1920 (1281 - ...)
+      Меняем картинки для шапки и подвала.
+   --------------------------- */
+@media (min-width: 1281px) {
+
+    .header {
+        background-image: url("../images/football_1920.jpg");
+    }
+
+    .footer {
+        background-image: url("../images/game_1920.jpg");
+    }
+}
 
 
 
