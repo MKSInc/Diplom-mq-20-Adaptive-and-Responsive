@@ -27,6 +27,7 @@
 
 body {
     font-family: 'Open Sans', sans-serif;
+    ;
 }
 
 /* ----------
@@ -261,11 +262,17 @@ body {
     counter-reset: action__list-counter;
 }
 
+.action__item__image {
+/*  Точно не уверен, нужно ли для <picture> дописать display: block,
+    так как и без него картинка отображается как надо. Но на всякий случай добавил. */
+    display: block;
+}
 
 .action__item__image img {
     display: block;
     width: 100%;
     min-height: 100px;
+    background-color: #f5f4f9;
 }
 
 /*  Для указания разных отступов от краев экрана до текста. */
@@ -362,7 +369,7 @@ body {
     position: relative;
     z-index: 2;
 
-    padding-top: 99px;
+    padding-top: 95px;
     padding-bottom: 10px;
 }
 
@@ -390,17 +397,19 @@ body {
     color: #9b8ec1;
 
     text-align: center;
-    margin-top: 48px;
+    margin-top: 54px;
     margin-bottom: 73px;
 }
 
 .footer__title {
     font-size: 32px;
+    line-height: 100%;
     font-weight: 700;
     letter-spacing: 1px;
 
     text-transform: uppercase;
     color: #ffffff;
+    margin-bottom: 5px;
 }
 
 .footer__full-logo {
@@ -550,6 +559,48 @@ body {
         left: -30px;
     }
 
+/*  ACTION-LIST (641 - ...) */
+
+    .action__item__title {
+        font-size: 80px;
+        letter-spacing: normal;
+        color: #c1c1c1;
+    }
+
+    .action__item__title span {
+        opacity: 0.4;
+    }
+
+    .action__item__title::before {
+        font-size: 24px;
+        letter-spacing: 1.2px;
+    }
+
+    .action__item__title::after {
+        width: 30px;
+        height: 5px;
+    }
+
+    .action__item__text {
+        line-height: 120%;
+        letter-spacing: 1.2px;
+    }
+
+/*  FOOTER (641 - ...) */
+
+    .footer__logo {
+        width: 130px;
+        height: 137px;
+    }
+
+    .footer__text {
+        font-size: 30px;
+        color: #a496ca;
+    }
+
+    .footer__title {
+        font-size: 80px;
+    }
 }
 
 /* ---------------------------
@@ -631,7 +682,6 @@ body {
 
     .first-article .article__text {
         padding-left: 33.85vw;  /* 768 resolution -> 292-32=260px */
-
     }
 
     .second-article .article__text {
@@ -686,7 +736,6 @@ body {
         padding-bottom: 32px;
     }
 
-
     .list__item__title {
         font-size: 32px;
         letter-spacing: 1.6px;
@@ -706,12 +755,6 @@ body {
 
     /* ACTION-LIST (641 - 960) */
 
-    .action__item__image {
-    /*  Точно не уверен, нужно ли для <picture> дописать display: block,
-        так как и без него картинка отображается как надо. Но на всякий случай добавил. */
-        display: block;
-    }
-
     .action__item__image img {
     /*  Минимальная высота для блока, если картинка не загрузится,
         что бы избежать наползания соседних блоков друг на друга.   */
@@ -723,21 +766,8 @@ body {
         padding-bottom: 97px;
     }
 
-    .action__item__title {
-        font-size: 80px;
-        letter-spacing: normal;
-
-        color: #c1c1c1;
-    }
-
-    .action__item__title span {
-        opacity: 0.4;
-    }
-
     .action__item__title::before {
-        font-size: 24px;
         line-height: 100px;
-        letter-spacing: 1.2px;
 
         width: 116px;
         height: 116px;
@@ -747,9 +777,6 @@ body {
     }
 
     .action__item__title::after {
-        width: 30px;
-        height: 5px;
-
         top: -87px;
         left: calc(116px/2 - 30px/2);
     }
@@ -758,7 +785,6 @@ body {
         font-size: 24px;
         line-height: 28px;
 
-        letter-spacing: 1.2px;
         margin-top: 25px;
     }
 
@@ -769,21 +795,16 @@ body {
         padding-bottom: 18px;
     }
 
-    .footer__logo {
-        width: 130px;
-        height: 137px;
+    .footer__header {
+        margin-bottom: 280px;
     }
 
     .footer__text {
         font-size: 36px;
-        color: #a496ca;
-
-        margin-top: 57px;
-        margin-bottom: 271px;
+        margin-top: 72px;
     }
 
     .footer__title {
-        font-size: 80px;
         letter-spacing: 3px;
     }
 
@@ -806,39 +827,6 @@ body {
     .footer {
         background-image: url("../images/game_1280.jpg");
     }
-}
-
-/* ---------------------------
-      MEDIA-1920 (961 - 1919)
-      Изменение размера шрифта при изменение ширина экрана
-   --------------------------- */
-@media (min-width: 961px) and (max-width: 1919px) {
-    .general-title {
-    /*  При ширине экрана 961 дает font-size: 66px, а при 1920 - 90px.  */
-        font-size: calc(2.5vw + 41.95px);
-    }
-
-    .general-title__second-line {
-    /*  При ширине экрана 961 дает width: 827px, а при 1920 - 1090px.  */
-        width: calc(27.42vw + 563.45px);
-        margin-top: -10px;
-    }
-}
-
-/* ---------------------------
-      MEDIA-1920 (1920 - ...)
-      Изменение размера шрифта при изменение ширина экрана
-   --------------------------- */
-@media (min-width: 1920px) {
-    .general-title {
-        font-size: 90px;
-    }
-
-    .general-title__second-line {
-        width: 1090px;
-        margin-top: -16px;
-    }
-
 }
 
 /* ---------------------------
@@ -965,7 +953,7 @@ body {
 
     .action__list {
     /*  Временный отступ, чтобы подогнать блок под макет на время верстки */
-    /*  margin-top: 37px;   */
+    /*  margin-top: 55px;   /* 37px (55px для footer) */
     }
 
     .action__item {
@@ -980,47 +968,164 @@ body {
     }
 
     .action__item__image, .action__text {
-        flex: 0 1 956px;
+        flex: 0 1 50%;
+        max-width: 960px;
     }
 
-    .action__item__image {
-        display: block;     /* Общее свойство с макетом 768 */
+/*  Заставляет растягивать картинку, если колонка с текстом будет превышать ее по высоте. */
+    .action__item__image img {
+        height: 100%;
+        object-fit: cover;
     }
 
     .action__text {
         box-sizing: border-box;
+        margin-top: 0;
+    }
+
+    .action__item__title {
+        position: static;
+    }
+
+
+/*  FOOTER (961 - ...) */
+
+    .footer__body {
+        padding-top: 230px;
+        padding-bottom: 48px;
+    }
+
+    .footer__header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 150px;
+    }
+
+    .footer__logo {
+        margin: 0;
+    }
+
+    .footer__text {
+        font-size: 30px;
+        text-align: left;
 
         margin-top: 0;
+        margin-bottom: 0;
+        margin-left: 30px;
+    }
+
+    .footer__title {
+        letter-spacing: 4.41px;
+    }
+
+    .footer__full-logo {
+        margin-top: 262px;
+    }
+
+}
+
+/* ---------------------------
+      MEDIA-1920 (961 - 1919)
+      Изменение размера шрифта при изменение ширина экрана
+   --------------------------- */
+@media (min-width: 961px) and (max-width: 1919px) {
+
+/*  HEADER (961 - 1919)  */
+
+    .general-title {
+    /*  При ширине экрана 961 дает font-size: 66px, а при 1920 - 90px.  */
+        font-size: calc(2.5vw + 41.95px);
+    }
+
+    .general-title__second-line {
+    /*  При ширине экрана 961 дает width: 827px, а при 1920 - 1090px.  */
+        width: calc(27.42vw + 563.45px);
+        margin-top: -10px;
+    }
+
+/*  ACTION-LIST (961 - 1919) */
+
+    .action__text {
+        padding-top: calc(14.29vw - 27.29px);     /* 961-1920 resolution -> 110 - 247; */
+        padding-bottom: calc(6.99vw - 37.14px);   /* 961-1920 resolution -> 30 - 97; */
+    }
+
+    .action__item:nth-child(odd) .action__text {
+        padding-left: calc(5.53vw + 16.89px);     /* 961-1920 resolution -> 70 - 123; */
+        padding-right: calc(17.21vw - 150.34px);    /* 961-1920 resolution -> 15 - 180; */
+    }
+
+    .action__item:nth-child(even) .action__text {
+        padding-left: calc(17.21vw - 150.34px);     /* 961-1920 resolution -> 15 - 180; */
+        padding-right: calc(5.53vw + 16.89px);    /* 961-1920 resolution -> 70 - 123; */
+    }
+
+    .action__item__title {
+        font-size: calc(3.13vw + 19.94px);        /* 961-1920 resolution -> 50 - 80; */
+    }
+
+    .action__item__title::before {
+        font-size: calc(0.63vw + 11.99px);        /* 961-1920 resolution -> 18 - 24; */
+        line-height: calc(6.36vw + 16.87px);      /* 961-1920 resolution -> 78 - 139; */
+
+        width: calc(8.13vw + 11.84px);            /* 961-1920 resolution -> 90 - 168; */
+        height: calc(6.78vw + 24.86px);           /* 961-1920 resolution -> 90 - 155; */
+
+        top: calc(12.51vw - 30.25px);              /* 961-1920 resolution -> 90 - 210; */
+        left: calc(50% - (8.13vw + 11.84px)/2);   /* 961-1920 resolution -> 90 - 168; */
+    }
+
+    .action__item__title::after {
+        width: calc(0.94vw + 11.98px);            /* 961-1920 resolution -> 21 - 30; */
+
+        top: calc(16.16vw - 12.32px);             /* 961-1920 resolution -> 143 - 298; */
+        left: calc(50% - (0.83vw + 13.98px)/2);   /* 961-1920 resolution -> 22 - 30; */
+    }
+
+    .action__item__text {
+        font-size: calc(0.42vw + 15.99px);        /* 961-1920 resolution -> 20 - 24; */
+        margin-top: calc(7.72vw - 44.15px);       /* 961-1920 resolution -> 30 - 104; */
+    }
+
+}
+
+/* ---------------------------
+      MEDIA-1920 (1920 - ...)
+      Фиксированные значения для макета 1920 и более высокого разрешения.
+   --------------------------- */
+@media (min-width: 1920px) {
+
+/*  HEADER (1920 - ...)  */
+
+    .general-title {
+        font-size: 90px;
+    }
+
+    .general-title__second-line {
+        width: 1090px;
+        margin-top: -16px;
+    }
+
+/*  ACTION-LIST (1920 - ...) */
+
+    .action__text {
         padding-top: 247px;
         padding-bottom: 97px;
     }
 
     .action__item:nth-child(odd) .action__text {
         padding-left: 123px;
-        padding-right: calc(9.48% + 15px);      /* 1920 resolution -> 182+15; */
+        padding-right: 180px;
     }
 
     .action__item:nth-child(even) .action__text {
-        padding-left: calc(9.48% + 15px);       /* 1920 resolution -> 182+15; */
+        padding-left: 180px;
         padding-right: 123px;
     }
 
-    .action__item__title {
-        position: static;
-        font-size: 80px;        /* Общее свойство с макетом 768 */
-        letter-spacing: normal; /* Общее свойство с макетом 768 */
-
-        color: #c1c1c1;         /* Общее свойство с макетом 768 */
-    }
-
-    .action__item__title span {
-        opacity: 0.4;           /* Общее свойство с макетом 768 */
-    }
-
     .action__item__title::before {
-        font-size: 24px;        /* Общее свойство с макетом 768 */
         line-height: 139px;
-        letter-spacing: 1.2px;  /* Общее свойство с макетом 768 */
 
         width: 168px;
         height: 155px;
@@ -1030,18 +1135,12 @@ body {
     }
 
     .action__item__title::after {
-        width: 30px;
-        height: 5px;
-
         top: 298px;
         left: calc(50% - 30px/2);
     }
 
     .action__item__text {
         font-size: 24px;
-        line-height: 28px;
-
-        letter-spacing: 1.2px;
         margin-top: 104px;
     }
 
