@@ -79,6 +79,10 @@ body {
     margin: 0 auto;
 }
 
+.full-logo svg {
+    fill: #fff;
+}
+
 .general-title {
     font-size: 28px;
     line-height: 100%;
@@ -589,7 +593,7 @@ body {
 /*  FOOTER (641 - ...) */
 
     .footer__logo {
-        width: 130px;
+        flex: 0 0 130px;
         height: 137px;
     }
 
@@ -854,6 +858,10 @@ body {
         width: 191px;
     }
 
+    .full-logo:hover .full-logo__icon{
+        fill: #e7e7e7;
+    }
+
     .general-title {
     /*  Размер шрифта меняется в зависимости от ширины экрана
         и указывается в соответствующих медиазапросах (961 - 1919) и (1920 - ...)   */
@@ -866,6 +874,10 @@ body {
 
     .general-title__second-line {
         margin-right: 0;
+    }
+
+    .store__link:hover {
+        background-color: #7751db;
     }
 
     .store__link__container a:first-child {
@@ -1004,6 +1016,10 @@ body {
 
     .footer__logo {
         margin: 0;
+    }
+
+    .footer__logo:hover {
+        background-image: linear-gradient(to top, #5e3db3 0%, #7751db 100%);
     }
 
     .footer__text {
