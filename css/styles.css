@@ -593,7 +593,7 @@ body {
 /*  FOOTER (641 - ...) */
 
     .footer__logo {
-        flex: 0 0 130px;
+        width: 130px;
         height: 137px;
     }
 
@@ -1015,6 +1015,7 @@ body {
     }
 
     .footer__logo {
+        flex: 0 0 130px;
         margin: 0;
     }
 
